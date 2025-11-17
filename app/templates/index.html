@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+
+    .container {
+        display: flex;
+        padding: 30px;
+        gap: 25px;
+        animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(15px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .vote-box, .voter-list {
+        background: rgba(20, 20, 20, 0.55);
+        backdrop-filter: blur(10px);
+        border-radius: 18px;
+        padding: 22px;
+        border: 1px solid rgba(170, 70, 255, 0.25);
+        box-shadow: 0 0 25px rgba(160, 70, 255, 0.25);
+        transition: 0.3s ease;
+    }
+
+    .vote-box:hover, .voter-list:hover {
+        box-shadow: 0 0 35px rgba(180, 80, 255, 0.4);
+        transform: translateY(-4px);
+    }
+
+    .vote-box {
+        width: 68%;
+    }
+
+    .voter-list {
+        width: 30%;
+        height: 500px;
+        overflow-y: auto;
+    }
+
+    h2, h3 {
+        text-shadow: 0 0 12px rgba(110, 0, 255, 0.6);
+    }
+
+    label {
+        color: #d8b9ff;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    input, select {
+        width: 95%;
+        padding: 10px;
+        background: rgba(10, 10, 10, 0.6);
+        border: 1px solid rgba(120, 120, 255, 0.25);
+        border-radius: 10px;
+        color: #9dfbff;
+        font-size: 15px;
+        margin-top: 6px;
+
+        box-shadow: 0 0 12px rgba(65, 65, 255, 0.35);
+        transition: 0.3s ease;
+    }
+
+    input:focus, select:focus {
+        outline: none;
+        border-color: #9d5cff;
+        box-shadow: 0 0 18px #b47bff;
+    }
+
+    /* GENZ BUTTON */
+    button, input[type="submit"] {
+        padding: 11px 22px;
+        margin: 7px 4px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+
+        background: linear-gradient(135deg, #8a2cff, #d66bff);
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+
+        box-shadow: 0 0 18px rgba(180, 60, 255, 0.5);
+        transition: 0.3s ease;
+    }
+
+    button:hover, input[type="submit"]:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(200, 100, 255, 0.7);
+    }
+
+    /* TABLE */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        color: #e8e8e8;
+        font-size: 15px;
+    }
+
+    th, td {
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+</style>
+
+
+<div class="container">
+
+    <!-- VOTE FORM -->
+    <div class="vote-box">
+        <h2 style="color:#cfa8ff;">🗳 Cast Your Vote</h2>
+
+        <form action="/submit" method="post">
+            
+            <label>Select Political Party</label><br>
+            <select name="party" required>
+                <option value="">Choose</option>
+                {% for p in political_parties %}
+                <option value="{{ p }}">{{ p }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label>Enter Voter ID</label><br>
+            <input type="text" name="voter_id" placeholder="VOID001" required><br><br>
+
+            <input type="submit" value="Vote">
+        </form>
+
+        <br><br>
+
+        <a href="{{node_address}}/mine" target="_blank"><button>⛏ Mine</button></a>
+        <a href="/"><button>🔄 Resync</button></a>
+        <a href="{{node_address}}/chain" target="_blank"><button>🔗 View Chain</button></a>
+
+    </div>
+
+    <!-- VOTER LIST -->
+    <div class="voter-list">
+        <h3 style="color:#eab0ff;">Valid Voter List</h3>
+
+        <table>
+            {% for vid in voter_ids %}
+            <tr><td>{{ vid }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+
+    .result-box {
+        width: 70%;
+        margin: auto;
+
+        background: rgba(25, 25, 25, 0.55);
+        padding: 30px;
+        border-radius: 18px;
+
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(0, 200, 255, 0.25);
+        box-shadow: 0 0 25px rgba(0, 200, 255, 0.35);
+
+        animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(15px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e6e6e6;
+    table-layout: fixed;   /* 🔥 Forces equal fixed column widths */
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;      /* 🔥 Align everything properly */
+    border-bottom: 1px solid #333;
+}
+
+th:nth-child(1), td:nth-child(1) { width: 30%; }
+th:nth-child(2), td:nth-child(2) { width: 40%; }
+th:nth-child(3), td:nth-child(3) { width: 30%; }
+
+
+</style>
+
+<div class="result-box">
+    <h2 style="color:#75f1ff; text-shadow:0 0 12px #48dbff;">📊 Result Summary</h2>
+
+    <table>
+        <tr>
+            <th>Political Party</th>
+            <th>Total Votes</th>
+        </tr>
+
+        {% for p in political_parties %}
+        <tr>
+            <td>{{ p }}</td>
+            <td>{{ vote_gain.count(p) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
