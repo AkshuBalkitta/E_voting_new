@@ -8,108 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #e9e9e9;
-
-            background:
-                radial-gradient(circle at 20% 30%, rgba(120, 0, 255, 0.4), transparent 60%),
-                radial-gradient(circle at 80% 70%, rgba(0, 200, 255, 0.35), transparent 60%),
-                linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-                url("images/vote.jpeg") center/cover no-repeat fixed;
-        }
-
-        /* Futuristic Glow Overlay */
-        .overlay {
-            min-height: 100vh;
-            padding-bottom: 40px;
-            backdrop-filter: blur(6px);
-        }
-
-        /* NEON NAVBAR */
-        .navbar {
-            width: 100%;
-            padding: 16px 30px;
-
-            background: rgba(20, 20, 20, 0.55);
-            backdrop-filter: blur(10px);
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            border-bottom: 2px solid rgba(150, 80, 255, 0.5);
-            box-shadow: 0 0 20px rgba(150, 80, 255, 0.35);
-            animation: glowPulse 4s infinite ease-in-out;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 16px rgba(150, 80, 255, 0.35); }
-            50% { box-shadow: 0 0 28px rgba(150, 80, 255, 0.65); }
-        }
-
-        .navbar a {
-            color: #9dfbff;
-            margin-right: 25px;
-            font-size: 17px;
-            font-weight: 500;
-            text-decoration: none;
-
-            transition: 0.25s ease;
-        }
-
-        .navbar a:hover {
-            color: #ffb3ff;
-            text-shadow: 0 0 8px #ffb3ff, 0 0 16px #ff3cff;
-        }
-
-        .title-text {
-            font-size: 26px;
-            font-weight: 600;
-            color: #e8ccff;
-            text-shadow: 0 0 8px #c58aff, 0 0 18px #7f39ff;
-        }
-
-        /* FLASH MESSAGE STYLE */
-        .flash {
-            width: 75%;
-            margin: 20px auto;
-            padding: 14px;
-
-            border-radius: 12px;
-            text-align: center;
-            font-size: 17px;
-            font-weight: 600;
-
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-
-            animation: popIn 0.4s ease-out;
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0.85); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .flash.error {
-            background: rgba(255, 80, 80, 0.15);
-            border-color: rgba(255, 0, 0, 0.45);
-            color: #ff9e9e;
-            box-shadow: 0 0 12px rgba(255, 50, 50, 0.4);
-        }
-
-        .flash.ok {
-            background: rgba(0, 255, 200, 0.15);
-            border-color: #00ffd0;
-            color: #8afff5;
-            box-shadow: 0 0 12px rgba(0, 255, 200, 0.4);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: #e9e9e9; background: radial-gradient(circle at 20% 30%, rgba(120,0,255,0.4), transparent 60%), radial-gradient(circle at 80% 70%, rgba(0,200,255,0.35), transparent 60%), linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("images/vote.jpeg") center/cover no-repeat fixed; }
+        .overlay { min-height: 100vh; padding-bottom: 40px; backdrop-filter: blur(6px); }
+        .navbar { width: 100%; padding: 16px 30px; background: rgba(20,20,20,0.55); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(150,80,255,0.5); box-shadow: 0 0 20px rgba(150,80,255,0.35); animation: glowPulse 4s infinite ease-in-out; }
+        .navbar a { color: #9dfbff; margin-right: 25px; font-size: 17px; font-weight: 500; text-decoration: none; transition: 0.25s ease; }
+        .title-text { font-size: 26px; font-weight: 600; color: #e8ccff; text-shadow: 0 0 8px #c58aff, 0 0 18px #7f39ff; }
+        .flash { width: 75%; margin: 20px auto; padding: 14px; border-radius: 12px; text-align: center; font-size: 17px; font-weight: 600; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.18); animation: popIn 0.4s ease-out; }
+        .flash.error { background: rgba(255,80,80,0.15); border-color: rgba(255,0,0,0.45); color: #ff9e9e; box-shadow: 0 0 12px rgba(255,50,50,0.4); }
+        .flash.ok { background: rgba(0,255,200,0.15); border-color: #00ffd0; color: #8afff5; box-shadow: 0 0 12px rgba(0,255,200,0.4); }
+        /* small responsive */
+        @media (max-width:800px) {
+            .navbar { padding: 12px; }
+            .title-text { font-size: 20px; }
+            .flash { width: 95%; }
         }
     </style>
 </head>
@@ -123,8 +35,21 @@
 
         <div>
             <a href="/">Home</a>
-            <a href="/records">Records</a>
-            <a href="/results">Results</a>
+            {% if session.get('role') == 'admin' %}
+                <a href="/records">Records</a>
+                <a href="/results">Results</a>
+                <a href="{{ url_for('admin_chain') }}" target="_blank">View Chain</a>
+            {% else %}
+                <a href="/records">Records</a>
+                <a href="/results">Results</a>
+            {% endif %}
+
+            {% if session.get('username') %}
+                <span style="margin-right:15px; color:#cfefff;">Signed in: {{ session.get('username') }}</span>
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+            {% endif %}
         </div>
     </div>
 

@@ -1,0 +1,27 @@
+{
+    "chain": [
+        {
+            "index": 0,
+            "transactions": [],
+            "timestamp": 0,
+            "previous_hash": "0",
+            "nonce": 0,
+            "hash": "6dbf23122cb5046cc5c0c1b245c75f8e43c59ca8ffeac292715e5078e631d0c9"
+        },
+        {
+            "index": 1,
+            "transactions": [
+                {
+                    "voter_id": "VOID001",
+                    "party": "gAAAAABpG8dL2ajiA5S5Ufo4KV7ViYY0-8FplXZ6Rm17SpeHw_v8XmDlOk9dLukoZB4vICFjtHm7OMjxjd92qPSxNdbdufvUvq3VbBjz5rlTzIPDlrmEFk0=",
+                    "timestamp": 1763428171.173508
+                }
+            ],
+            "timestamp": 1763428175.006,
+            "previous_hash": "6dbf23122cb5046cc5c0c1b245c75f8e43c59ca8ffeac292715e5078e631d0c9",
+            "nonce": 343,
+            "hash": "003b1e57187d4c30c1f9be65dc6701b02f1189c5c1435a7cb3c224a3e7334ebe"
+        }
+    ],
+    "unconfirmed_transactions": []
+}

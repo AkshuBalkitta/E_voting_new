@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.login-card {
+    width: 420px;
+    margin: 70px auto;
+    padding: 35px;
+    border-radius: 20px;
+    background: rgba(20, 20, 20, 0.55);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(170, 70, 255, 0.25);
+    box-shadow: 0 0 30px rgba(160, 70, 255, 0.35);
+    animation: fadeIn 0.7s ease-out;
+    text-align: center;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to   { opacity: 1; transform: translateY(0); } }
+
+label { color: #d8b9ff; text-align: left; display: block; margin-bottom: 6px; font-weight: 500; }
+
+input { width: 100%; padding: 12px; margin-bottom: 18px; background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(120, 120, 255, 0.25); color: #9dfbff; border-radius: 10px; box-shadow: 0 0 12px rgba(65, 65, 255, 0.35); font-size: 15px; }
+input:focus { outline: none; border-color: #c56cff; box-shadow: 0 0 20px rgba(180, 80, 255, 0.6); }
+
+button { width: 100%; padding: 12px; border: none; border-radius: 12px; cursor: pointer; background: linear-gradient(135deg, #8a2cff, #d66bff); color: white; font-size: 16px; font-weight: 600; margin-top: 10px; box-shadow: 0 0 20px rgba(180, 60, 255, 0.55); transition: 0.3s ease; }
+button:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(200, 100, 255, 0.75); }
+</style>
+
+<div class="login-card">
+    <h2 style="color:#cfa8ff;">🔐 Login</h2>
+    <p style="margin-bottom: 18px; color:#e6d6ff;">Enter username and password</p>
+
+    <form action="/login" method="POST">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Enter username" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter password" required>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+{% endblock %}
