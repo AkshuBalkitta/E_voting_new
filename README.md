@@ -1,15 +1,14 @@
-BLOCKCHAIN BASED E VOTING SYSTEM USING PYTHON  
+BLOCKCHAIN BASED E VOTING SYSTEM USING PYTHON<br>
 
+installation cmds:<br>
+pip install Flask <br>
+pip install flask-cors<br>
+pip install requests<br>
+pip install cryptography<br>
 
-installation cmds: 
-pip install Flask 
-pip install flask-cors         # only if needed
-pip install requests 
-pip install cryptography 
+run flask:(in main cmd prompt not in power shell)<br>
+set FLASK_APP=service.py<br>
+flask run --port 8000<br>
 
-run flask:(in main cmd prompt not in power shell) 
-set FLASK_APP=service.py 
-flask run --port 8000 
-
-run app.py: 
+run app.py:<br>
 py app.py
