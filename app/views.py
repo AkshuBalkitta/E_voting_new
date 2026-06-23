@@ -6,7 +6,7 @@ from app import app
 
 CONNECTED_SERVICE_ADDRESS = "http://127.0.0.1:8000"
 
-POLITICAL_PARTIES = ["Democratic Party", "Republican Party", "Socialist party"]
+POLITICAL_PARTIES = ["DMK", "ADMK", "TVK"]
 
 VALID_VOTERS = {
     "voter1": {"password": "v1pass", "voter_id": "VOID001"},
