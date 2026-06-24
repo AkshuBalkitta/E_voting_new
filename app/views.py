@@ -3,7 +3,7 @@ import json
 import requests
 from flask import render_template, redirect, request, flash, session, url_for
 from app import app
-
+# Backend module for E-Voting System
 CONNECTED_SERVICE_ADDRESS = "http://127.0.0.1:8000"
 
 POLITICAL_PARTIES = ["DMK", "ADMK", "TVK"]
